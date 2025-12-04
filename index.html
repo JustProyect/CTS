@@ -61,43 +61,54 @@ body {
 }
 
 /* ================= CONTENIDO =============== */
+
+/* Estilos para el Contenido Principal */
 .content {
-  margin-left:220px;
-  padding:28px;
-  display:flex;
-  gap:28px;
-  align-items:flex-start;
-  transition:0.3s ease;
+  margin-left: 220px;
+  padding: 28px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  transition: 0.3s ease;
 }
 
-@media(max-width:1100px) {
-  .content { gap:18px; }
-}
+/* ==================================== */
+/* 🏫 Estilos del Banner Superior (Combinado y Corregido) */
+/* ==================================== */
 
-@media(max-width:900px) {
-  .sidebar { display:none; }
-  .content {
-    margin-left:0;
-    flex-direction:column;
-    padding:18px;
-  }
-}
-
-/* ================= ENCABEZADO SUPERIOR =============== */
 .banner-top {
-  background:linear-gradient(90deg,#0b3a7a,#1f67c1);
-  color:white;
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:25px;
-  box-shadow:0 6px 18px rgba(15,23,42,0.12);
-  text-align:left;
+  /* PROPIEDADES DE FLEXBOX (Alineación) */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+  /* PROPIEDADES DE DISEÑO */
+  background: linear-gradient(90deg, #0b3a7a, #1f67c1);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
 }
+
+.logo-banner {
+  width: 80px;
+  height: auto;
+  flex-shrink: 0;
+}
+
 .banner-top h1 {
-  margin:0;
-  font-size:22px;
-  font-weight:700;
+  margin: 0; 
+  font-size: 22px;
+  font-weight: 700;
 }
+
+.banner-top p {
+  margin: 0;
+  flex-grow: 1; 
+  font-size: 16px; 
+}
+
 
 /* ================= CARD IZQUIERDA =============== */
 .wrap {
@@ -200,51 +211,78 @@ input {
   box-shadow:0 4px 10px rgba(0,0,0,0.25);
 }
 
-@media(max-width:900px){
-  .hamburger{ display:block; }
-  .sidebar{ display:none; width:200px; }
+/* ==================================== */
+/* 📱 Media Queries (Adaptación a Móviles) */
+/* ==================================== */
+
+@media(max-width: 1100px) {
+    .content {
+        gap: 18px;
+    }
+}
+
+@media(max-width: 900px) {
+    .hamburger{ display:block; }
+    .sidebar{ display:none; width:200px; }
+    
+    .content {
+        margin-left: 0;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    /* Ajuste de Banner en móviles */
+    .banner-top {
+        flex-direction: column; /* Coloca el logo arriba y el texto abajo */
+        text-align: center;
+        padding: 15px;
+        gap: 10px;
+    }
+    
+    .logo-banner {
+        width: 60px; /* Reducir el tamaño del logo en móviles */
+    }
 }
 
 </style>
 </head>
 <body>
 
-<!-- ================= MENU LATERAL ================= -->
 <div class="sidebar">
   <h2>MENÚ CTS</h2>
-  <a href="index.html">📌 CTS Empresa</a>
+  <a href="ctz22.html">📌 CTS Empresa</a>
   <a href="ctz2.html">👤 CTS Personal</a>
 </div>
 
-<!-- ================= CONTENIDO PRINCIPAL ================= -->
 <div class="content">
 
-  <div class="wrap">
-    <div class="banner-top">
-      <h1>Universidad Andina de Cusco - Filial Puerto Maldonado</h1>
-      <p>Escuela Profesional de Contabilidad • Nombre: Leyha Malaga</p>
-    </div>
+    <div class="wrap">
+      <div class="banner-top">
+        <img src="uacpng.png" alt="Logo Universidad Andina del Cusco" class="logo-banner">
+        <h1>Universidad Andina de Cusco - Filial Puerto Maldonado</h1>
+        <p>Escuela Profesional de Contabilidad • Nombre: Leyha Malaga</p>
+      </div>
 
-    <div class="header">
-      <h1>Calculadora CTS – Empresa MYPE</h1>
-      <p>Cálculo basado en: (Sueldo + 1/6 Gratificación) / 360 × 180</p>
-    </div>
+      <div class="header">
+        <h1>Calculadora CTS – Empresa MYPE</h1>
+        <p>Cálculo basado en: (Sueldo + 1/6 Gratificación) / 360 × 180</p>
+      </div>
 
-    <div class="card">
-      <label>Sueldo Mensual (S/)</label>
-      <input type="number" id="sueldo" placeholder="Ej: 1500" min="0" step="0.01">
+      <div class="card">
+        <label>Sueldo Mensual (S/)</label>
+        <input type="number" id="sueldo" placeholder="Ej: 1500" min="0" step="0.01">
 
-      <label style="margin-top:14px;">Gratificación (S/)</label>
-      <input type="number" id="grat" placeholder="Ej: 300" min="0" step="0.01">
+        <label style="margin-top:14px;">Gratificación (S/)</label>
+        <input type="number" id="grat" placeholder="Ej: 300" min="0" step="0.01">
 
-      <button class="btn" onclick="calcular()">Calcular CTS Empresa</button>
+        <button class="btn" onclick="calcular()">Calcular CTS Empresa</button>
 
-      <div id="resultado" style="display:none; margin-top:15px; background:#fff7ed; padding:14px; border-radius:10px;">
-        <strong>Resultado:</strong> 
-        <span id="valorCTS"></span>
+        <div id="resultado" style="display:none; margin-top:15px; background:#fff7ed; padding:14px; border-radius:10px;">
+          <strong>Resultado:</strong> 
+          <span id="valorCTS"></span>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="panel-resultado" id="panelPro">
       <h2>Resultados del cálculo</h2>
@@ -273,7 +311,7 @@ function calcular(){
   const grat6 = grat/6;
   const base = sueldo + grat6;
   const cts180 = (base/360)*180;
-  const cts = cts180/2;
+  const cts = cts180/2; /* Asumo que es MYPE por la fórmula indicada en el HTML. Si es Régimen General, debería ser cts180 */
 
   document.getElementById('resultado').style.display='block';
   document.getElementById('valorCTS').textContent = format(cts);
@@ -287,7 +325,6 @@ function calcular(){
 }
 </script>
 
-<!-- BOTÓN HAMBURGUESA -->
 <div class="hamburger" onclick="toggleMenu()">☰</div>
 
 <script>
@@ -300,3 +337,4 @@ function toggleMenu(){
 
 </body>
 </html>
+
