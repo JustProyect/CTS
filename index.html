@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Universidad Andina de Cusco - CTS Empresa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#f4f6fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#2b6de5;
+    --accent-2:#2563eb;
+    --success:#16a34a;
+    --panel:#f7f9fc;
+    --soft:#f1f5f9;
+    --yellow:#fff7ed;
+  }
+
+  *{box-sizing:border-box;font-family:Inter,system-ui,Arial,sans-serif}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,#f7fbff 0%,var(--bg) 100%);
+    padding:0;
+    color:#0f172a;
+  }
+
+  /* ================= SIDEBAR ================= */
+  .sidebar {
+      width: 220px;
+      background: #0b3a7a;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 20px;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+      z-index: 9999;
+  }
+  .sidebar h2 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+  }
+  .sidebar a {
+      display: block;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: 0.2s;
+  }
+  .sidebar a:hover {
+      background: #1454b3;
+      padding-left: 30px;
+  }
+
+  /* El contenido se corre a la derecha del menú */
+  .content {
+      margin-left: 220px;
+      padding: 28px;
+  }
+
+  @media(max-width:768px){
+      .sidebar{width:180px;}
+      .content{margin-left:180px;}
+  }
+
+  /* ================= ENCABEZADO SUPERIOR ================= */
+  .banner-top {
+      background: linear-gradient(90deg,#0b3a7a,#1f67c1);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.12);
+      text-align: left;
+  }
+
+  .banner-top h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+  }
+
+  .banner-top p {
+      margin: 5px 0 0;
+      font-size: 15px;
+      opacity: 0.95;
+  }
+
+  /* ================= TARJETA Y DISEÑO ================= */
+
+  .wrap{max-width:780px;margin:0 auto}
+
+  .header{
+    background:linear-gradient(90deg,#0b3a7a,#1f67c1);
+    color:white;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 6px 18px rgba(15,23,42,0.06);
+  }
+  .header h1{margin:0;font-size:22px}
+  .header p{margin:6px 0 0;font-size:14px;color:rgba(255,255,255,0.9)}
+
+  .card{
+    background:var(--card);
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 6px 24px rgba(16,24,40,0.06);
+  }
+
+  label{
+    font-size:14px;
+    color:#374151;
+    margin-bottom:6px;
+    font-weight:600;
+    display:block;
+  }
+
+  input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+    font-size:15px;
+    background:white;
+  }
+
+  .btn{
+    width:100%;
+    margin-top:16px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:white;
+    padding:12px;
+    border:0;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(37,99,235,0.16);
+  }
+  .btn:hover{opacity:0.95}
+
+  .result-box{
+    margin-top:20px;
+    background:#fff7ed;
+    border-left:5px solid #f59e0b;
+    padding:16px;
+    border-radius:10px;
+    display:none;
+  }
+  .result-title{
+    font-size:16px;
+    font-weight:700;
+    color:#b45309;
+    margin-bottom:6px;
+  }
+  .result-value{
+    font-size:22px;
+    font-weight:800;
+    color:#b45309;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ================= MENU LATERAL ================= -->
+<div class="sidebar">
+    <h2>MENÚ CTS</h2>
+    <a href="ctz22.html">📌 CTS Empresa</a>
+    <a href="ctz2.html">👤 CTS Personal</a>
+</div>
+
+<!-- ================= CONTENIDO PRINCIPAL ================= -->
+<div class="content">
+
+  <!-- 🔵 BARRA SUPERIOR QUE ME ENVIASTE -->
+  <div class="banner-top">
+      <h1>Universidad Andina de Cusco - Filial Puerto Maldonado</h1>
+      <p>Escuela Profesional de Contabilidad • Nombre: Leyha Malaga</p>
+  </div>
+
+<div class="wrap">
+
+  <div class="header">
+    <h1>Calculadora CTS – Empresa MYPE</h1>
+    <p>Cálculo basado en: (Sueldo + 1/6 Gratificación) / 360 × 180</p>
+  </div>
+
+  <div class="card">
+    <label>Sueldo Mensual (S/)</label>
+    <input type="number" id="sueldo" placeholder="Ej: 1500" min="0" step="0.01">
+
+    <label style="margin-top:14px;">Gratificación (S/)</label>
+    <input type="number" id="grat" placeholder="Ej: 300" min="0" step="0.01">
+
+    <button class="btn" onclick="calcular()">Calcular CTS Empresa</button>
+
+    <div id="resultado" class="result-box">
+      <div class="result-title">Resultado del cálculo CTS</div>
+      <div class="result-value" id="valorCTS"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function format(n){
+  return 'S/ ' + Number(n).toLocaleString('es-PE',{minimumFractionDigits:2});
+}
+
+function calcular(){
+  const sueldo = Number(document.getElementById('sueldo').value)||0;
+  const grat = Number(document.getElementById('grat').value)||0;
+
+  const formula = (sueldo + grat/6) / 360 * 180;
+
+  document.getElementById('resultado').style.display = 'block';
+  document.getElementById('valorCTS').textContent = format(formula);
+}
+</script>
+
+</body>
+</html>
