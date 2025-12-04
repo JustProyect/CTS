@@ -184,6 +184,27 @@ input {
   text-align:right;
 }
 
+/* HAMBURGUER BUTTON */
+.hamburger{
+  display:none;
+  position:fixed;
+  top:15px;
+  left:15px;
+  background:#0b3a7a;
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:22px;
+  z-index:10000;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
+}
+
+@media(max-width:900px){
+  .hamburger{ display:block; }
+  .sidebar{ display:none; width:200px; }
+}
+
 </style>
 </head>
 <body>
@@ -201,7 +222,7 @@ input {
   <div class="wrap">
     <div class="banner-top">
       <h1>Universidad Andina de Cusco - Filial Puerto Maldonado</h1>
-      <p>Escuela Profesional de Contabilidad - VII</p>
+      <p>Escuela Profesional de Contabilidad • Nombre: Leyha Malaga</p>
     </div>
 
     <div class="header">
@@ -266,6 +287,16 @@ function calcular(){
 }
 </script>
 
+<!-- BOTÓN HAMBURGUESA -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<script>
+function toggleMenu(){
+  const sb = document.querySelector('.sidebar');
+  if(sb.style.display==='block') sb.style.display='none';
+  else sb.style.display='block';
+}
+</script>
+
 </body>
 </html>
-
