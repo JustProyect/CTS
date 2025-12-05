@@ -3,247 +3,175 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Universidad Andina de Cusco - CTS MRT</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Calculadora CTS MYPE - Universidad Andina del Cusco</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
+  --azul:#0b3a7a;
+  --azul-claro:#2563eb;
   --bg:#f4f6fb;
-  --card:#ffffff;
-  --muted:#6b7280;
-  --accent:#2b6de5;
-  --accent-2:#2563eb;
-  --success:#16a34a;
-  --panel:#f7f9fc;
-  --soft:#f1f5f9;
-  --yellow:#fff7ed;
+  --blanco:#ffffff;
+  --gris:#6b7280;
+  --verde:#16a34a;
+  --naranja:#f97316;
+  --sombra:0 6px 18px rgba(15,23,42,0.08);
 }
 
-* { box-sizing:border-box; font-family:Inter,system-ui,Arial,sans-serif; }
-body {
+*{box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{
   margin:0;
-  background:linear-gradient(180deg,#f7fbff 0%,var(--bg) 100%);
-  padding:0;
+  background:var(--bg);
   color:#0f172a;
 }
 
-/* ================= SIDEBAR ================= */
-.sidebar {
+/* ====== SIDEBAR ====== */
+.sidebar{
   width:220px;
-  background:#0b3a7a;
+  background:var(--azul);
+  color:white;
   height:100vh;
   position:fixed;
-  left:0;
-  top:0;
-  padding-top:20px;
-  box-shadow:2px 0 10px rgba(0,0,0,0.2);
-  z-index:9999;
-  transition:0.3s ease;
+  left:0;top:0;
+  padding:20px 0;
+  box-shadow:2px 0 8px rgba(0,0,0,0.15);
 }
-.sidebar h2 {
-  color:white;
+.sidebar h2{
   text-align:center;
   margin-bottom:20px;
   font-size:20px;
 }
-.sidebar a {
+.sidebar a{
   display:block;
-  padding:14px 20px;
+  padding:14px 22px;
   color:white;
   text-decoration:none;
-  font-size:16px;
-  border-bottom:1px solid rgba(255,255,255,0.2);
+  border-bottom:1px solid rgba(255,255,255,0.1);
   transition:0.2s;
 }
-.sidebar a:hover {
-  background:#1454b3;
-  padding-left:30px;
+.sidebar a:hover{background:#1454b3;padding-left:30px;}
+
+/* ====== CONTENIDO PRINCIPAL ====== */
+.content{
+  margin-left:220px;
+  display:flex;
+  gap:24px;
+  padding:28px;
+  flex-wrap:wrap;
 }
 
-/* ================= CONTENIDO =============== */
-
-/* Estilos para el Contenido Principal */
-.content {
-  margin-left: 220px;
-  padding: 28px;
-  display: flex;
-  gap: 28px;
-  align-items: flex-start;
-  transition: 0.3s ease;
-}
-
-/* ==================================== */
-/* 🏫 Estilos del Banner Superior (Combinado y Corregido) */
-/* ==================================== */
-
-.banner-top {
-  /* PROPIEDADES DE FLEXBOX (Alineación) */
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  
-  /* PROPIEDADES DE DISEÑO */
-  background: linear-gradient(90deg, #0b3a7a, #1f67c1);
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
-}
-
-.logo-banner {
-  width: 80px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.banner-top h1 {
-  margin: 0; 
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.banner-top p {
-  margin: 0;
-  flex-grow: 1; 
-  font-size: 16px; 
-}
-
-
-/* ================= CARD IZQUIERDA =============== */
-.wrap {
-  width:60%;
-}
-@media(max-width:900px) { .wrap { width:100%; } }
-
-.header {
-  background:linear-gradient(90deg,#0b3a7a,#1f67c1);
+/* ====== BANNER SUPERIOR ====== */
+.banner{
+  background:linear-gradient(90deg,var(--azul),#1f67c1);
   color:white;
-  border-radius:10px;
   padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 6px 18px rgba(15,23,42,0.06);
-}
-
-.card {
-  background:var(--card);
   border-radius:12px;
-  padding:20px;
-  box-shadow:0 6px 24px rgba(16,24,40,0.06);
+  display:flex;
+  align-items:center;
+  gap:20px;
+  box-shadow:var(--sombra);
+  width:100%;
 }
+.banner img{width:80px;height:auto;}
+.banner h1{margin:0;font-size:20px;font-weight:700;}
+.banner p{margin:0;font-size:15px;}
 
-label {
+/* ====== PANEL IZQUIERDO ====== */
+.card{
+  flex:1;
+  min-width:380px;
+  background:var(--blanco);
+  border-radius:12px;
+  box-shadow:var(--sombra);
+  padding:22px;
+}
+.card h2{
+  margin-top:0;
+  color:var(--azul);
+  font-size:18px;
+  margin-bottom:10px;
+}
+label{
+  font-weight:600;
   font-size:14px;
   color:#374151;
-  margin-bottom:6px;
-  font-weight:600;
   display:block;
+  margin-bottom:6px;
 }
-
-input {
+input, select{
   width:100%;
-  padding:12px;
-  border-radius:10px;
+  padding:10px;
   border:1px solid #e2e8f0;
+  border-radius:8px;
   font-size:15px;
+  margin-bottom:12px;
 }
-
-.btn {
+button{
   width:100%;
-  margin-top:16px;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  background:linear-gradient(90deg,var(--azul-claro),#1d4ed8);
+  border:none;
   color:white;
   padding:12px;
-  border:0;
-  border-radius:10px;
+  border-radius:8px;
   font-weight:700;
+  font-size:15px;
   cursor:pointer;
-  box-shadow:0 8px 20px rgba(37,99,235,0.16);
+  transition:0.2s;
+  box-shadow:0 4px 10px rgba(37,99,235,0.2);
+}
+button:hover{background:#1d4ed8;}
+
+.alerta{
+  background:#fff7ed;
+  color:#9a3412;
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:10px;
+  font-size:13px;
+  border-left:4px solid var(--naranja);
 }
 
-/* ======== PANEL DERECHO ========= */
-.panel-resultado {
-  width:40%;
-  background:#ffffff;
-  border-radius:14px;
+/* ====== PANEL DERECHO (RESULTADOS) ====== */
+.panel{
+  flex:1;
+  min-width:360px;
+  background:var(--blanco);
+  border-radius:12px;
+  box-shadow:var(--sombra);
   padding:22px;
-  border:1px solid #e5e7eb;
-  box-shadow:0 6px 20px rgba(16,24,40,0.06);
   height:fit-content;
 }
-@media(max-width:900px) {
-  .panel-resultado { width:100%; margin-top:18px; }
+.panel h2{
+  margin-top:0;
+  font-size:18px;
+  color:var(--azul);
 }
-
-.res-row {
+.res-row{
   display:flex;
   justify-content:space-between;
-  padding:10px 0;
+  padding:8px 0;
   border-bottom:1px solid #eef2f7;
   font-size:14px;
 }
-.res-row:last-child { border-bottom:0; }
+.res-row:last-child{border-bottom:0;}
 
-.total-box {
-  margin-top:18px;
+.total-box{
+  margin-top:16px;
   background:#f0f9ff;
   padding:14px;
   border-radius:10px;
-  font-size:18px;
-  font-weight:800;
-  color:#0369a1;
   text-align:right;
+  font-weight:800;
+  color:var(--azul);
+  font-size:18px;
 }
 
-/* HAMBURGUER BUTTON */
-.hamburger{
-  display:none;
-  position:fixed;
-  top:15px;
-  left:15px;
-  background:#0b3a7a;
-  color:white;
-  padding:10px 14px;
-  border-radius:8px;
-  font-size:22px;
-  z-index:10000;
-  cursor:pointer;
-  box-shadow:0 4px 10px rgba(0,0,0,0.25);
+@media(max-width:900px){
+  .content{margin-left:0;flex-direction:column;}
+  .sidebar{display:none;}
+  .banner{flex-direction:column;text-align:center;}
+  .banner img{width:60px;}
 }
-
-/* ==================================== */
-/* 📱 Media Queries (Adaptación a Móviles) */
-/* ==================================== */
-
-@media(max-width: 1100px) {
-    .content {
-        gap: 18px;
-    }
-}
-
-@media(max-width: 900px) {
-    .hamburger{ display:block; }
-    .sidebar{ display:none; width:200px; }
-    
-    .content {
-        margin-left: 0;
-        flex-direction: column;
-        padding: 18px;
-    }
-
-    /* Ajuste de Banner en móviles */
-    .banner-top {
-        flex-direction: column; /* Coloca el logo arriba y el texto abajo */
-        text-align: center;
-        padding: 15px;
-        gap: 10px;
-    }
-    
-    .logo-banner {
-        width: 60px; /* Reducir el tamaño del logo en móviles */
-    }
-}
-
 </style>
 </head>
 <body>
@@ -256,93 +184,97 @@ input {
 
 <div class="content">
 
-    <div class="wrap">
-      <div class="banner-top">
-        <img src="uacpng.png" alt="Logo Universidad Andina del Cusco" class="logo-banner">
-        <h1>Universidad Andina del Cusco - Filial Puerto Maldonado</h1>
-        <p>Escuela Profesional de Contabilidad - VII</p>
-      </div>
-
-      <div class="header">
-        <h1>Calculadora CTS – Empresa MYPE</h1>
-        <p>Cálculo basado en: (Sueldo + 1/6 Gratificación) / 360 × 180</p>
-      </div>
-
-      <div class="card">
-        <label>Sueldo Mensual (S/)</label>
-        <input type="number" id="sueldo" placeholder="Ej: 1500" min="0" step="0.01">
-
-        <label style="margin-top:14px;">Gratificación (S/)</label>
-        <input type="number" id="grat" placeholder="Ej: 300" min="0" step="0.01">
-
-        <button class="btn" onclick="calcular()">Calcular CTS Empresa</button>
-
-        <div id="resultado" style="display:none; margin-top:15px; background:#fff7ed; padding:14px; border-radius:10px;">
-          <strong>Resultado:</strong> 
-          <span id="valorCTS"></span>
-        </div>
-      </div>
+  <div class="banner">
+    <img src="uacpng.png" alt="Logo UAC">
+    <div>
+      <h1>Universidad Andina del Cusco - Filial Puerto Maldonado</h1>
+      <p>Escuela Profesional de Contabilidad - VII Ciclo</p>
     </div>
+  </div>
 
-  <div class="panel-resultado" id="panelPro">
-      <h2>Resultados del cálculo</h2>
-      <p>Resumen detallado de la CTS basada en el periodo indicado.</p>
+  <!-- PANEL IZQUIERDO -->
+  <div class="card">
+    <h2>Datos para el cálculo</h2>
+    <div class="alerta">La CTS MYPE se calcula sobre 6 meses de trabajo con un máximo de 180 días computables.</div>
 
-      <div class="res-row"><span>Meses computables</span><strong id="r_meses">6</strong></div>
-      <div class="res-row"><span>Días computables</span><strong id="r_dias">180</strong></div>
-      <div class="res-row"><span>Sueldo base</span><strong id="r_base">S/ 0.00</strong></div>
-      <div class="res-row"><span>+ 1/6 Gratificación</span><strong id="r_grat">S/ 0.00</strong></div>
-      <div class="res-row"><span>Base para CTS</span><strong id="r_base_total">S/ 0.00</strong></div>
-      <div class="res-row"><span>CTS / día</span><strong id="r_por_dia">S/ 0.00</strong></div>
-      <div class="res-row"><span>CTS (180 días)</span><strong id="r_por_180">S/ 0.00</strong></div>
+    <label>📅 Fecha de ingreso</label>
+    <input type="date" id="fecha_ingreso">
 
-      <div class="total-box" id="r_total">TOTAL CTS: S/ 0.00</div>
+    <label>📆 Próximo depósito CTS</label>
+    <select id="periodo">
+      <option value="May - Oct 2025">May 2025 - Oct 2025 (Pago: 31 Oct)</option>
+      <option value="Nov 2025 - Abr 2026">Nov 2025 - Abr 2026 (Pago: 30 Abr)</option>
+    </select>
+
+    <label>💰 Sueldo básico (S/)</label>
+    <input type="number" id="sueldo" placeholder="Ej: 1200" min="0" step="0.01">
+
+    <label>🎁 Gratificación (S/)</label>
+    <input type="number" id="grat" placeholder="Ej: 300" min="0" step="0.01">
+
+    <label>👨‍👩‍👧 Asignación familiar (S/)</label>
+    <input type="number" id="asig" placeholder="Ej: 0" min="0" step="0.01">
+
+    <label>🚫 Días de inasistencia</label>
+    <input type="number" id="inasist" placeholder="Ej: 2" min="0" step="1">
+
+    <label>➕ Días adicionales computables</label>
+    <input type="number" id="adicionales" placeholder="Ej: 0" min="0" step="1">
+
+    <button onclick="calcular()">Calcular CTS MYPE</button>
+  </div>
+
+  <!-- PANEL DERECHO -->
+  <div class="panel" id="panelResultados">
+    <h2>Resultados del cálculo</h2>
+
+    <div class="res-row"><span>Meses computables</span><strong id="r_meses">6</strong></div>
+    <div class="res-row"><span>Días computables</span><strong id="r_dias">180</strong></div>
+    <div class="res-row"><span>Días adicionales</span><strong id="r_dias_extra">0</strong></div>
+    <div class="res-row"><span>Descuento por inasistencia</span><strong id="r_descuento" style="color:red;">S/ 0.00</strong></div>
+    <div class="res-row"><span>Sueldo base</span><strong id="r_base">S/ 0.00</strong></div>
+    <div class="res-row"><span>+ Asignación familiar</span><strong id="r_asig">S/ 0.00</strong></div>
+    <div class="res-row"><span>+ 1/6 Gratificación</span><strong id="r_grat">S/ 0.00</strong></div>
+    <div class="res-row"><span>Base para CTS</span><strong id="r_base_total">S/ 0.00</strong></div>
+    <div class="res-row"><span>CTS por día</span><strong id="r_por_dia">S/ 0.00</strong></div>
+    <div class="res-row"><span>CTS total (MYPE)</span><strong id="r_por_180">S/ 0.00</strong></div>
+
+    <div class="total-box" id="r_total">TOTAL CTS: S/ 0.00</div>
   </div>
 
 </div>
 
 <script>
-function format(n){ return 'S/ ' + Number(n).toLocaleString('es-PE',{minimumFractionDigits:2}); }
+function format(n){return 'S/ ' + Number(n).toLocaleString('es-PE',{minimumFractionDigits:2});}
 
 function calcular(){
   const sueldo = Number(document.getElementById('sueldo').value)||0;
   const grat = Number(document.getElementById('grat').value)||0;
+  const asig = Number(document.getElementById('asig').value)||0;
+  const inasist = Number(document.getElementById('inasist').value)||0;
+  const adicionales = Number(document.getElementById('adicionales').value)||0;
 
+  // Datos base
   const grat6 = grat/6;
-  const base = sueldo + grat6;
-  const cts180 = (base/360)*180;
-  const cts = cts180/2; /* Asumo que es MYPE por la fórmula indicada en el HTML. Si es Régimen General, debería ser cts180 */
+  const base = sueldo + asig + grat6;
+  const totalDias = 180 - inasist + adicionales;
+  const ctsTotal = (base/360)*totalDias/2; // MYPE paga la mitad
+  const desc = (base/360)*inasist/2;
 
-  document.getElementById('resultado').style.display='block';
-  document.getElementById('valorCTS').textContent = format(cts);
-
+  // Mostrar resultados
+  document.getElementById('r_meses').textContent = "6";
+  document.getElementById('r_dias').textContent = "180";
+  document.getElementById('r_dias_extra').textContent = adicionales + " días";
+  document.getElementById('r_descuento').textContent = format(desc);
   document.getElementById('r_base').textContent = format(sueldo);
+  document.getElementById('r_asig').textContent = format(asig);
   document.getElementById('r_grat').textContent = format(grat6);
   document.getElementById('r_base_total').textContent = format(base);
   document.getElementById('r_por_dia').textContent = format(base/360);
-  document.getElementById('r_por_180').textContent = format(cts180);
-  document.getElementById('r_total').textContent = 'TOTAL CTS: ' + format(cts);
-}
-</script>
-
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-
-<script>
-function toggleMenu(){
-  const sb = document.querySelector('.sidebar');
-  if(sb.style.display==='block') sb.style.display='none';
-  else sb.style.display='block';
+  document.getElementById('r_por_180').textContent = format(ctsTotal);
+  document.getElementById('r_total').textContent = 'TOTAL CTS: ' + format(ctsTotal);
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
