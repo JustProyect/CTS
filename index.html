@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calculadora CTS MYPE - Universidad Andina del Cusco</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -12,18 +12,12 @@
   --azul-claro:#2563eb;
   --bg:#f4f6fb;
   --blanco:#ffffff;
-  --gris:#6b7280;
-  --verde:#16a34a;
   --naranja:#f97316;
   --sombra:0 6px 18px rgba(15,23,42,0.08);
 }
 
 *{box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{
-  margin:0;
-  background:var(--bg);
-  color:#0f172a;
-}
+body{margin:0;background:var(--bg);color:#0f172a;}
 
 /* ====== SIDEBAR ====== */
 .sidebar{
@@ -35,12 +29,9 @@ body{
   left:0;top:0;
   padding:20px 0;
   box-shadow:2px 0 8px rgba(0,0,0,0.15);
+  transition:transform 0.3s ease;
 }
-.sidebar h2{
-  text-align:center;
-  margin-bottom:20px;
-  font-size:20px;
-}
+.sidebar h2{text-align:center;margin-bottom:20px;font-size:20px;}
 .sidebar a{
   display:block;
   padding:14px 22px;
@@ -51,6 +42,22 @@ body{
 }
 .sidebar a:hover{background:#1454b3;padding-left:30px;}
 
+/* ====== HAMBURGER ====== */
+.hamburger{
+  display:none;
+  position:fixed;
+  top:16px;
+  left:16px;
+  background:var(--azul);
+  color:white;
+  font-size:22px;
+  border:none;
+  padding:10px 12px;
+  border-radius:8px;
+  z-index:10001;
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
+}
+
 /* ====== CONTENIDO PRINCIPAL ====== */
 .content{
   margin-left:220px;
@@ -58,9 +65,10 @@ body{
   gap:24px;
   padding:28px;
   flex-wrap:wrap;
+  transition:margin-left 0.3s ease;
 }
 
-/* ====== BANNER SUPERIOR ====== */
+/* ====== BANNER ====== */
 .banner{
   background:linear-gradient(90deg,var(--azul),#1f67c1);
   color:white;
@@ -76,7 +84,7 @@ body{
 .banner h1{margin:0;font-size:20px;font-weight:700;}
 .banner p{margin:0;font-size:15px;}
 
-/* ====== PANEL IZQUIERDO ====== */
+/* ====== FORMULARIO ====== */
 .card{
   flex:1;
   min-width:380px;
@@ -85,19 +93,8 @@ body{
   box-shadow:var(--sombra);
   padding:22px;
 }
-.card h2{
-  margin-top:0;
-  color:var(--azul);
-  font-size:18px;
-  margin-bottom:10px;
-}
-label{
-  font-weight:600;
-  font-size:14px;
-  color:#374151;
-  display:block;
-  margin-bottom:6px;
-}
+.card h2{margin-top:0;color:var(--azul);font-size:18px;}
+label{font-weight:600;font-size:14px;color:#374151;display:block;margin-bottom:6px;}
 input, select{
   width:100%;
   padding:10px;
@@ -131,7 +128,7 @@ button:hover{background:#1d4ed8;}
   border-left:4px solid var(--naranja);
 }
 
-/* ====== PANEL DERECHO (RESULTADOS) ====== */
+/* ====== PANEL RESULTADOS ====== */
 .panel{
   flex:1;
   min-width:360px;
@@ -141,11 +138,7 @@ button:hover{background:#1d4ed8;}
   padding:22px;
   height:fit-content;
 }
-.panel h2{
-  margin-top:0;
-  font-size:18px;
-  color:var(--azul);
-}
+.panel h2{margin-top:0;font-size:18px;color:var(--azul);}
 .res-row{
   display:flex;
   justify-content:space-between;
@@ -154,7 +147,6 @@ button:hover{background:#1d4ed8;}
   font-size:14px;
 }
 .res-row:last-child{border-bottom:0;}
-
 .total-box{
   margin-top:16px;
   background:#f0f9ff;
@@ -166,22 +158,37 @@ button:hover{background:#1d4ed8;}
   font-size:18px;
 }
 
+/* ====== RESPONSIVO ====== */
 @media(max-width:900px){
-  .content{margin-left:0;flex-direction:column;}
-  .sidebar{display:none;}
-  .banner{flex-direction:column;text-align:center;}
+  .hamburger{display:block;}
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.active{transform:translateX(0);}
+  .content{margin-left:0;flex-direction:column;padding:18px;}
+  .banner{flex-direction:column;text-align:center;gap:10px;}
   .banner img{width:60px;}
+  .card,.panel{width:100%;min-width:auto;}
+}
+@media(max-width:500px){
+  .banner h1{font-size:18px;}
+  .banner p{font-size:14px;}
+  button{font-size:14px;}
+  input, select{font-size:14px;}
 }
 </style>
 </head>
 <body>
 
-<div class="sidebar">
+<!-- Botón menú -->
+<button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
   <h2>MENÚ CTS</h2>
   <a href="index.html">📌 CTS REMYPE</a>
   <a href="ctz2.html">👤 CTS RG</a>
 </div>
 
+<!-- Contenido -->
 <div class="content">
 
   <div class="banner">
@@ -246,7 +253,6 @@ button:hover{background:#1d4ed8;}
 
 <script>
 function format(n){return 'S/ ' + Number(n).toLocaleString('es-PE',{minimumFractionDigits:2});}
-
 function calcular(){
   const sueldo = Number(document.getElementById('sueldo').value)||0;
   const grat = Number(document.getElementById('grat').value)||0;
@@ -254,14 +260,12 @@ function calcular(){
   const inasist = Number(document.getElementById('inasist').value)||0;
   const adicionales = Number(document.getElementById('adicionales').value)||0;
 
-  // Datos base
   const grat6 = grat/6;
   const base = sueldo + asig + grat6;
   const totalDias = 180 - inasist + adicionales;
-  const ctsTotal = (base/360)*totalDias/2; // MYPE paga la mitad
+  const ctsTotal = (base/360)*totalDias/2;
   const desc = (base/360)*inasist/2;
 
-  // Mostrar resultados
   document.getElementById('r_meses').textContent = "6";
   document.getElementById('r_dias').textContent = "180";
   document.getElementById('r_dias_extra').textContent = adicionales + " días";
@@ -273,6 +277,9 @@ function calcular(){
   document.getElementById('r_por_dia').textContent = format(base/360);
   document.getElementById('r_por_180').textContent = format(ctsTotal);
   document.getElementById('r_total').textContent = 'TOTAL CTS: ' + format(ctsTotal);
+}
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('active');
 }
 </script>
 
