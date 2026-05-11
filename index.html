@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Calculadora CTS MYPE - Universidad Andina del Cusco</title>
+<title>Calculadora CTS MYPE - UAC</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -30,6 +30,7 @@ body{margin:0;background:var(--bg);color:#0f172a;}
   padding:20px 0;
   box-shadow:2px 0 8px rgba(0,0,0,0.15);
   transition:transform 0.3s ease;
+  z-index: 1000;
 }
 .sidebar h2{text-align:center;margin-bottom:20px;font-size:20px;}
 .sidebar a{
@@ -84,6 +85,21 @@ body{margin:0;background:var(--bg);color:#0f172a;}
 .banner h1{margin:0;font-size:20px;font-weight:700;}
 .banner p{margin:0;font-size:15px;}
 
+/* ====== SELECTOR IDIOMA ====== */
+.lang-selector {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: -10px;
+}
+.lang-selector select {
+    width: auto;
+    padding: 5px 10px;
+    background: white;
+    border: 2px solid var(--azul);
+    font-weight: bold;
+}
+
 /* ====== FORMULARIO ====== */
 .card{
   flex:1;
@@ -103,7 +119,7 @@ input, select{
   font-size:15px;
   margin-bottom:12px;
 }
-button{
+button.btn-calc{
   width:100%;
   background:linear-gradient(90deg,var(--azul-claro),#1d4ed8);
   border:none;
@@ -116,7 +132,7 @@ button{
   transition:0.2s;
   box-shadow:0 4px 10px rgba(37,99,235,0.2);
 }
-button:hover{background:#1d4ed8;}
+button.btn-calc:hover{background:#1d4ed8;}
 
 .alerta{
   background:#fff7ed;
@@ -168,83 +184,81 @@ button:hover{background:#1d4ed8;}
   .banner img{width:60px;}
   .card,.panel{width:100%;min-width:auto;}
 }
-@media(max-width:500px){
-  .banner h1{font-size:18px;}
-  .banner p{font-size:14px;}
-  button{font-size:14px;}
-  input, select{font-size:14px;}
-}
 </style>
 </head>
 <body>
 
-<!-- Botón menú -->
 <button class="hamburger" onclick="toggleSidebar()">☰</button>
 
-<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
-  <h2>MENÚ CTS</h2>
-  <a href="index.html">📌 CTS REMYPE</a>
-  <a href="ctz2.html">👤 CTS RG</a>
+  <h2 id="txt_menu_title">MENÚ CTS</h2>
+  <a href="index.html" id="txt_menu_remype">📌 CTS REMYPE</a>
+  <a href="ctz2.html" id="txt_menu_rg">👤 CTS RG</a>
 </div>
 
-<!-- Contenido -->
 <div class="content">
 
   <div class="banner">
     <img src="uacpng.png" alt="Logo UAC">
     <div>
-      <h1>Universidad Andina del Cusco - Filial Puerto Maldonado</h1>
-      <p>Escuela Profesional de Contabilidad - VII Ciclo</p>
+      <h1 id="txt_uac_title">Universidad Andina del Cusco - Filial Puerto Maldonado</h1>
+      <p id="txt_uac_sub">Escuela Profesional de Contabilidad - VII Ciclo</p>
     </div>
+  </div>
+
+  <div class="lang-selector">
+    <select id="languageSelect" onchange="changeLanguage()">
+        <option value="es">Español 🇪🇸</option>
+        <option value="qu">Quechua 🇵🇪</option>
+    </select>
   </div>
 
   <!-- PANEL IZQUIERDO -->
   <div class="card">
-    <h2>Datos para el cálculo</h2>
-    <div class="alerta">La CTS MYPE se calcula sobre 6 meses de trabajo con un máximo de 180 días computables.</div>
+    <h2 id="txt_form_title">Datos para el cálculo</h2>
+    <div class="alerta" id="txt_alerta">La CTS MYPE se calcula sobre 6 meses de trabajo con un máximo de 180 días computables.</div>
 
-    <label>📅 Fecha de ingreso</label>
+    <label id="lbl_fecha">📅 Fecha de ingreso</label>
     <input type="date" id="fecha_ingreso">
 
-    <label>📆 Próximo depósito CTS</label>
+    <label id="lbl_periodo">📆 Próximo depósito CTS</label>
     <select id="periodo">
-      <option value="May - Oct 2025">May 2025 - Oct 2025 (Pago: 31 Oct)</option>
-      <option value="Nov 2025 - Abr 2026">Nov 2025 - Abr 2026 (Pago: 30 Abr)</option>
+      <option value="May - Oct 2025" id="opt_p1">May 2025 - Oct 2025 (Pago: 31 Oct)</option>
+      <option value="Nov 2025 - Abr 2026" id="opt_p2">Nov 2025 - Abr 2026 (Pago: 30 Abr)</option>
     </select>
 
-    <label>💰 Sueldo básico (S/)</label>
+    <label id="lbl_sueldo">💰 Sueldo básico (S/)</label>
     <input type="number" id="sueldo" placeholder="Ej: 1200" min="0" step="0.01">
 
-    <label>🎁 Gratificación (S/)</label>
+    <label id="lbl_grat">🎁 Gratificación (S/)</label>
     <input type="number" id="grat" placeholder="Ej: 300" min="0" step="0.01">
 
-    <label>👨‍👩‍👧 Asignación familiar (S/)</label>
+    <label id="lbl_asig">👨‍👩‍👧 Asignación familiar (S/)</label>
     <input type="number" id="asig" placeholder="Ej: 0" min="0" step="0.01">
 
-    <label>🚫 Días de inasistencia</label>
+    <label id="lbl_inasist">🚫 Días de inasistencia</label>
     <input type="number" id="inasist" placeholder="Ej: 2" min="0" step="1">
 
-    <label>➕ Días adicionales computables</label>
+    <label id="lbl_adic">➕ Días adicionales computables</label>
     <input type="number" id="adicionales" placeholder="Ej: 0" min="0" step="1">
 
-    <button onclick="calcular()">Calcular CTS MYPE</button>
+    <button class="btn-calc" onclick="calcular()" id="btn_calcular">Calcular CTS MYPE</button>
   </div>
 
   <!-- PANEL DERECHO -->
   <div class="panel" id="panelResultados">
-    <h2>Resultados del cálculo</h2>
+    <h2 id="txt_res_title">Resultados del cálculo</h2>
 
-    <div class="res-row"><span>Meses computables</span><strong id="r_meses">6</strong></div>
-    <div class="res-row"><span>Días computables</span><strong id="r_dias">180</strong></div>
-    <div class="res-row"><span>Días adicionales</span><strong id="r_dias_extra">0</strong></div>
-    <div class="res-row"><span>Descuento por inasistencia</span><strong id="r_descuento" style="color:red;">S/ 0.00</strong></div>
-    <div class="res-row"><span>Sueldo base</span><strong id="r_base">S/ 0.00</strong></div>
-    <div class="res-row"><span>+ Asignación familiar</span><strong id="r_asig">S/ 0.00</strong></div>
-    <div class="res-row"><span>+ 1/6 Gratificación</span><strong id="r_grat">S/ 0.00</strong></div>
-    <div class="res-row"><span>Base para CTS</span><strong id="r_base_total">S/ 0.00</strong></div>
-    <div class="res-row"><span>CTS por día</span><strong id="r_por_dia">S/ 0.00</strong></div>
-    <div class="res-row"><span>CTS total (MYPE)</span><strong id="r_por_180">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_meses">Meses computables</span><strong id="r_meses">6</strong></div>
+    <div class="res-row"><span id="txt_r_dias">Días computables</span><strong id="r_dias">180</strong></div>
+    <div class="res-row"><span id="txt_r_adic">Días adicionales</span><strong id="r_dias_extra">0</strong></div>
+    <div class="res-row"><span id="txt_r_desc">Descuento por inasistencia</span><strong id="r_descuento" style="color:red;">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_sueldo">Sueldo base</span><strong id="r_base">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_asig">+ Asignación familiar</span><strong id="r_asig">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_grat">+ 1/6 Gratificación</span><strong id="r_grat">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_basetot">Base para CTS</span><strong id="r_base_total">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_dia">CTS por día</span><strong id="r_por_dia">S/ 0.00</strong></div>
+    <div class="res-row"><span id="txt_r_mype">CTS total (MYPE)</span><strong id="r_por_180">S/ 0.00</strong></div>
 
     <div class="total-box" id="r_total">TOTAL CTS: S/ 0.00</div>
   </div>
@@ -252,8 +266,98 @@ button:hover{background:#1d4ed8;}
 </div>
 
 <script>
+// --- Diccionario de Traducción ---
+const translations = {
+    es: {
+        menu_title: "MENÚ CTS",
+        uac_sub: "Escuela Profesional de Contabilidad - VII Ciclo",
+        form_title: "Datos para el cálculo",
+        alerta: "La CTS MYPE se calcula sobre 6 meses de trabajo con un máximo de 180 días computables.",
+        lbl_fecha: "📅 Fecha de ingreso",
+        lbl_periodo: "📆 Próximo depósito CTS",
+        lbl_sueldo: "💰 Sueldo básico (S/)",
+        lbl_grat: "🎁 Gratificación (S/)",
+        lbl_asig: "👨‍👩‍👧 Asignación familiar (S/)",
+        lbl_inasist: "🚫 Días de inasistencia",
+        lbl_adic: "➕ Días adicionales computables",
+        btn_calcular: "Calcular CTS MYPE",
+        res_title: "Resultados del cálculo",
+        r_meses: "Meses computables",
+        r_dias: "Días computables",
+        r_adic: "Días adicionales",
+        r_desc: "Descuento por inasistencia",
+        r_sueldo: "Sueldo base",
+        r_asig: "+ Asignación familiar",
+        r_grat: "+ 1/6 Gratificación",
+        r_basetot: "Base para CTS",
+        r_dia: "CTS por día",
+        r_mype: "CTS total (MYPE)",
+        total: "TOTAL CTS: "
+    },
+    qu: {
+        menu_title: "CTS ÑAWPAQ",
+        uac_sub: "Contabilidad Profesional Yachay Wasi - VII Ciclo",
+        form_title: "Yupaypaq imakuna",
+        alerta: "CTS MYPE nisqaqa soqta killamanta yupakun, 180 p'unchay kamachisqalla.",
+        lbl_fecha: "📅 Haykumusqayki p'unchay",
+        lbl_periodo: "📆 CTS churasqa p'unchay",
+        lbl_sueldo: "💰 Sapa killa llank'asqayki (S/)",
+        lbl_grat: "🎁 Gratificación (S/)",
+        lbl_asig: "👨‍👩‍👧 Ayllupaq yanapay (S/)",
+        lbl_inasist: "🚫 Mana llank'asqayki p'unchaykuna",
+        lbl_adic: "➕ Yapakuq p'unchaykuna",
+        btn_calcular: "CTS MYPE Yupay",
+        res_title: "Yupaypa lloqsiynin",
+        r_meses: "Yupanapaq killakuna",
+        r_dias: "Yupanapaq p'unchaykuna",
+        r_adic: "Yapasqa p'unchaykuna",
+        r_desc: "Mana llank'asqamanta qechusqa",
+        r_sueldo: "Llapa llank'asqayki",
+        r_asig: "+ Ayllupaq yanapay",
+        r_grat: "+ 1/6 Gratificación",
+        r_basetot: "CTS-paq saphin",
+        r_dia: "CTS sapa p'unchaypaq",
+        r_mype: "CTS llapan (MYPE)",
+        total: "LLAPAN CTS: "
+    }
+};
+
+function changeLanguage() {
+    const lang = document.getElementById('languageSelect').value;
+    const t = translations[lang];
+
+    document.getElementById('txt_menu_title').textContent = t.menu_title;
+    document.getElementById('txt_uac_sub').textContent = t.uac_sub;
+    document.getElementById('txt_form_title').textContent = t.form_title;
+    document.getElementById('txt_alerta').textContent = t.alerta;
+    document.getElementById('lbl_fecha').textContent = t.lbl_fecha;
+    document.getElementById('lbl_periodo').textContent = t.lbl_periodo;
+    document.getElementById('lbl_sueldo').textContent = t.lbl_sueldo;
+    document.getElementById('lbl_grat').textContent = t.lbl_grat;
+    document.getElementById('lbl_asig').textContent = t.lbl_asig;
+    document.getElementById('lbl_inasist').textContent = t.lbl_inasist;
+    document.getElementById('lbl_adic').textContent = t.lbl_adic;
+    document.getElementById('btn_calcular').textContent = t.btn_calcular;
+    document.getElementById('txt_res_title').textContent = t.res_title;
+    document.getElementById('txt_r_meses').textContent = t.r_meses;
+    document.getElementById('txt_r_dias').textContent = t.r_dias;
+    document.getElementById('txt_r_adic').textContent = t.r_adic;
+    document.getElementById('txt_r_desc').textContent = t.r_desc;
+    document.getElementById('txt_r_sueldo').textContent = t.r_sueldo;
+    document.getElementById('txt_r_asig').textContent = t.r_asig;
+    document.getElementById('txt_r_grat').textContent = t.r_grat;
+    document.getElementById('txt_r_basetot').textContent = t.r_basetot;
+    document.getElementById('txt_r_dia').textContent = t.r_dia;
+    document.getElementById('txt_r_mype').textContent = t.r_mype;
+    
+    // Recalcular si ya hay datos para actualizar el texto del total
+    calcular();
+}
+
 function format(n){return 'S/ ' + Number(n).toLocaleString('es-PE',{minimumFractionDigits:2});}
+
 function calcular(){
+  const lang = document.getElementById('languageSelect').value;
   const sueldo = Number(document.getElementById('sueldo').value)||0;
   const grat = Number(document.getElementById('grat').value)||0;
   const asig = Number(document.getElementById('asig').value)||0;
@@ -268,7 +372,7 @@ function calcular(){
 
   document.getElementById('r_meses').textContent = "6";
   document.getElementById('r_dias').textContent = "180";
-  document.getElementById('r_dias_extra').textContent = adicionales + " días";
+  document.getElementById('r_dias_extra').textContent = adicionales + (lang === 'qu' ? " p'unchay" : " días");
   document.getElementById('r_descuento').textContent = format(desc);
   document.getElementById('r_base').textContent = format(sueldo);
   document.getElementById('r_asig').textContent = format(asig);
@@ -276,8 +380,9 @@ function calcular(){
   document.getElementById('r_base_total').textContent = format(base);
   document.getElementById('r_por_dia').textContent = format(base/360);
   document.getElementById('r_por_180').textContent = format(ctsTotal);
-  document.getElementById('r_total').textContent = 'TOTAL CTS: ' + format(ctsTotal);
+  document.getElementById('r_total').textContent = translations[lang].total + format(ctsTotal);
 }
+
 function toggleSidebar(){
   document.getElementById('sidebar').classList.toggle('active');
 }
