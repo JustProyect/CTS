@@ -289,8 +289,8 @@ const translations = {
         r_dia: "CTS por día",
         r_mype: "CTS total (MYPE)",
         total: "TOTAL CTS: ",
-        p1_texto: (anio) => `May ${anio} - Oct ${anio} (Pago: 15 Nov)`,
-        p2_texto: (anio) => `Nov ${anio} - Abr ${anio + 1} (Pago: 15 May)`
+        p1_texto: (anio) => `Primer pago: May ${anio} - Oct ${anio} (Pago: 15 Nov)`,
+        p2_texto: (anio) => `Segundo pago: Nov ${anio} - Abr ${anio + 1} (Pago: 15 May)`
     },
     qu: {
         menu_title: "CTS ÑAWPAQ",
@@ -317,8 +317,8 @@ const translations = {
         r_dia: "CTS sapa p'unchaypaq",
         r_mype: "CTS llapan (MYPE)",
         total: "LLAPAN CTS: ",
-        p1_texto: (anio) => `Aymuray ${anio} - Kantaray ${anio} (Churaq: 15 Nov)`,
-        p2_texto: (anio) => `Ayamarq'a ${anio} - Ayriwa ${anio + 1} (Churaq: 15 May)`
+        p1_texto: (anio) => `Ñawpaq churaq: Aymuray ${anio} - Kantaray ${anio} (Churaq: 15 Nov)`,
+        p2_texto: (anio) => `Iskay churaq: Ayamarq'a ${anio} - Ayriwa ${anio + 1} (Churaq: 15 May)`
     }
 };
 
@@ -392,6 +392,7 @@ function changeLanguage() {
     calcular();
 }
 
+// Formateador de moneda en Soles (S/)
 function format(n){return 'S/ ' + Number(n).toLocaleString('es-PE',{minimumFractionDigits:2, maximumFractionDigits:2});}
 
 function calcular(){
